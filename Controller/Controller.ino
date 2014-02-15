@@ -9,7 +9,7 @@ int AIN1 = 9; //Direction
 int AIN2 = 8; //Direction
 
 int throttle;
-int pct;
+float pct;
 
 void setup(){
   Serial.begin(115200);
@@ -21,13 +21,12 @@ void setup(){
 }
 void loop(){
   throttle = analogRead(A0);
-  pct = throttle/1023;
+  pct = throttle/1023.0;
   Serial.println(throttle);
   Serial.println(pct);
-  move(1,255*pct,1);
+  move(1,floor(255*pct),1);
   
   delay(5);
-  stop();
   
 }
 
